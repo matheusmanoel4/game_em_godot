@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cktcf1xh5j2nq"]
+
+[ext_resource type="Script" path="res://script/plataformas_e_itens.gd" id="1_p2gul"]
+[ext_resource type="Texture2D" uid="uid://csk2hpd0xxby4" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Blocks (16 x 16).png" id="1_v0ftl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmosk"]
+size = Vector2(44, 21)
+
+[node name="plataformar" type="Node2D"]
+script = ExtResource("1_p2gul")
+
+[node name="plataformas" type="AnimatableBody2D" parent="."]
+collision_layer = 3
+collision_mask = 2
+constant_linear_velocity = Vector2(1, 1)
+
+[node name="blocos" type="Sprite2D" parent="plataformas"]
+position = Vector2(-0.999999, -0.5)
+scale = Vector2(1.375, 1.3125)
+texture = ExtResource("1_v0ftl")
+region_enabled = true
+region_rect = Rect2(96, 64, 32, 16)
+
+[node name="colisao" type="CollisionShape2D" parent="plataformas"]
+light_mask = 0
+visibility_layer = 2
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_nmosk")
+one_way_collision = true

@@ -1,0 +1,88 @@
+[gd_scene load_steps=11 format=3 uid="uid://bk4jfd2ck3yal"]
+
+[ext_resource type="Script" path="res://script/rocket_cherry.gd" id="1_6tfp1"]
+[ext_resource type="Texture2D" uid="uid://kpbewjifrcj8" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Flying (16 x 32).png" id="2_2u6n6"]
+[ext_resource type="Texture2D" uid="uid://dc1ypk0mjwj01" path="res://assets/Sprite Pack 2/7 - Rocket Cherry/Hurt_Falling (16 x 32).png" id="3_2a4jm"]
+[ext_resource type="PackedScene" uid="uid://viyysrqq4a7" path="res://plataformas e itens/hitbox.tscn" id="4_ackei"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi7in"]
+atlas = ExtResource("2_2u6n6")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_157so"]
+atlas = ExtResource("2_2u6n6")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_im8r6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fi7in")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_157so")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2a4jm")
+}],
+"loop": true,
+"name": &"hurt_falling",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6gltx"]
+size = Vector2(12.0057, 10.0063)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1422"]
+size = Vector2(11.9998, 3.99401)
+
+[sub_resource type="Curve2D" id="Curve2D_616x1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, 8)
+}
+point_count = 1
+
+[node name="Base_patrol" type="Node2D"]
+
+[node name="rocket_cherry" type="CharacterBody2D" parent="."]
+position = Vector2(208, -128)
+rotation = -1.5708
+script = ExtResource("1_6tfp1")
+
+[node name="animations" type="AnimatedSprite2D" parent="rocket_cherry"]
+position = Vector2(0, 0.5)
+scale = Vector2(1, 0.96875)
+sprite_frames = SubResource("SpriteFrames_im8r6")
+animation = &"hurt_falling"
+autoplay = "flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rocket_cherry"]
+position = Vector2(-0.0473855, 8.00752)
+shape = SubResource("RectangleShape2D_6gltx")
+
+[node name="hitbox" parent="rocket_cherry" instance=ExtResource("4_ackei")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rocket_cherry/hitbox"]
+shape = SubResource("RectangleShape2D_w1422")
+debug_color = Color(0.968627, 0, 0.47451, 0.419608)
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2(0, -8)
+curve = SubResource("Curve2D_616x1")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(208, -120)
+rotation = -1.5708
+rotates = false
+
+[node name="remote" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+remote_path = NodePath("../../../rocket_cherry")
+
+[node name="spawn_enemy" type="Marker2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,0 +1,225 @@
+[gd_scene load_steps=13 format=3 uid="uid://ciyspqtt7wr58"]
+
+[ext_resource type="Texture2D" uid="uid://dwrgrc78tuk5w" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Walking (16 x 16).png" id="1_jp6b1"]
+[ext_resource type="Script" path="res://script/enemy.gd" id="1_k5kjr"]
+[ext_resource type="Texture2D" uid="uid://dn4c7ilccoy75" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Hurt (16 x 16).png" id="3_4r6hi"]
+[ext_resource type="Texture2D" uid="uid://doihtq1qrybfs" path="res://assets/Sprite Pack 2/4 - Robo Pumpkin/Standing (16 x 16).png" id="4_5jiuc"]
+[ext_resource type="PackedScene" uid="uid://viyysrqq4a7" path="res://plataformas e itens/hitbox.tscn" id="5_yqs3i"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_058x8"]
+radius = 18.8032
+height = 69.0963
+
+[sub_resource type="Animation" id="Animation_jpy0l"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anime:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jp6b1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anime:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anime:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ebwm6"]
+resource_name = "hurt"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anime:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_4r6hi")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anime:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anime:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gdtkq"]
+resource_name = "standing"
+length = 0.5
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anime:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_5jiuc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anime:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.32831e-09),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anime:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(-0.00697704),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ap21n"]
+resource_name = "walk"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("anime:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_jp6b1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("anime:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("anime:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nx27h"]
+_data = {
+"RESET": SubResource("Animation_jpy0l"),
+"hurt": SubResource("Animation_ebwm6"),
+"standing": SubResource("Animation_gdtkq"),
+"walk": SubResource("Animation_ap21n")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cu8ks"]
+size = Vector2(12, 2.71872)
+
+[node name="enemy" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(1, 0)
+collision_layer = 4
+collision_mask = 3
+slide_on_ceiling = false
+script = ExtResource("1_k5kjr")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(46, -3)
+rotation = 3.13875
+scale = Vector2(0.425457, 0.144725)
+shape = SubResource("CapsuleShape2D_058x8")
+one_way_collision_margin = 0.0
+
+[node name="anime" type="Sprite2D" parent="."]
+position = Vector2(46.875, -6.58594)
+scale = Vector2(1.26562, 1.17676)
+texture = ExtResource("1_jp6b1")
+hframes = 2
+
+[node name="Anim" type="AnimationPlayer" parent="."]
+autoplay = "walk"
+speed_scale = 0.5
+libraries = {
+"": SubResource("AnimationLibrary_nx27h")
+}
+
+[node name="wall_detector" type="RayCast2D" parent="."]
+position = Vector2(47, -3)
+target_position = Vector2(-10, 0)
+collision_mask = 6
+
+[node name="hitbox" parent="." instance=ExtResource("5_yqs3i")]
+position = Vector2(0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" groups=["enemies"]]
+position = Vector2(46, -10.6406)
+shape = SubResource("RectangleShape2D_cu8ks")
+
+[connection signal="animation_finished" from="Anim" to="." method="_on_anim_animation_finished"]

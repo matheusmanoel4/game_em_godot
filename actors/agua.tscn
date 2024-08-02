@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpijltu3dny7m"]
+
+[ext_resource type="Script" path="res://script/spikes_area.gd" id="1_885dc"]
+[ext_resource type="Texture2D" uid="uid://be2qw4sn8jvft" path="res://assets/Seasonal Tilesets/5 - Misc. universal tiles/Water_frames (16 x 32).png" id="2_4dmai"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hoe4c"]
+
+[node name="agua" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_885dc")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_hoe4c")
+
+[node name="spikes" type="Sprite2D" parent="."]
+texture_repeat = 2
+texture = ExtResource("2_4dmai")
+region_enabled = true
+region_rect = Rect2(0, 8, 16000, 8)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
